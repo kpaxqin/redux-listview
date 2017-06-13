@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { uniq, omitBy } from './utils';
 import { parse } from 'query-string';
 
 export const DEFAULT_LIST_DATA = {
@@ -9,15 +9,8 @@ export const DEFAULT_LIST_DATA = {
   loading: false,
 };
 
-function transformListQuery(query) {
-  return _.chain(query)
-    .mapKeys((v, k) => _.snakeCase(k))
-    .mapValues((v, k) => (k === 'page_index' ? v - 1 : v))
-    .value();
-}
-
 export const DEFAULT_CONFIG = {
-  name: _.uniq(),
+  name: uniq(),
   autoLoad: true,
   mapPropsToRequest(props) {
     const DEFAULT_REQUEST = {
@@ -25,17 +18,17 @@ export const DEFAULT_CONFIG = {
       pageSize: 10,
     };
     const queryObject = parse(props.location.search);
-    return transformListQuery({
+    return {
       ...DEFAULT_REQUEST,
       ...queryObject,
-    });
+    };
   },
   mapPropsToSearch(props) {
     return parse(props.location.search);
   },
   mapSearchToQuery(search) {
     const emptyValues = ['', undefined];
-    return _.omitBy(search, v => emptyValues.indexOf(v) !== -1);
+    return omitBy(search, v => emptyValues.indexOf(v) !== -1);
   },
   dataLoader() {
     return Promise.resolve(DEFAULT_LIST_DATA);

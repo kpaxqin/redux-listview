@@ -15,7 +15,8 @@
   "author": "kpaxqin",
   "license": "MIT",
   "dependencies": {
-    "lodash": "^4.17.4",
+    "lodash.omitby": "^4.6.0",
+    "lodash.uniq": "^4.5.0",
     "query-string": "^4.3.4",
     "redux-action-tools": "^1.2.2"
   },

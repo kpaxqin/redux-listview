@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import _ from 'lodash';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { parse } from 'query-string';
@@ -126,8 +125,6 @@ function connectListView(config, ListComponent) {
   return connect(state => state)(ListView);
 }
 
-const curriedConnectListView = _.curry(connectListView);
-
-export { connectListView, curriedConnectListView, DEFAULT_CONFIG, listReducer, propTypes };
+export { connectListView, DEFAULT_CONFIG, listReducer, propTypes };
 
 export default connectListView;
