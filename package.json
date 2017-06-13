@@ -1,0 +1,36 @@
+{
+  "name": "redux-listview",
+  "version": "0.1.0",
+  "description": "HOC for create list page with react and redux",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "list",
+    "listview"
+  ],
+  "author": "kpaxqin",
+  "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "query-string": "^4.3.4",
+    "redux-action-tools": "^1.2.2"
+  },
+  "peerDependencies": {
+    "react": "^15.5.4",
+    "react-redux": "^5.0.5",
+    "redux": "^3.6.0"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "webpack": "^2.6.1"
+  }
+}
