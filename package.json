@@ -3,6 +3,10 @@
   "version": "0.1.1",
   "description": "HOC for create list page with react and redux",
   "main": "dist/index.js",
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
     "prepublish": "npm prune && npm run build",
     "build": "webpack"
@@ -23,7 +27,7 @@
   },
   "peerDependencies": {
     "react": "^15.0",
-    "react-redux": "^4.0",
+    "react-redux": "^5.0",
     "redux": "^3.6.0"
   },
   "devDependencies": {
