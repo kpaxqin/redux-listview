@@ -1,6 +1,6 @@
 {
   "name": "redux-listview",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "HOC for create list page with react and redux",
   "main": "dist/index.js",
   "scripts": {
