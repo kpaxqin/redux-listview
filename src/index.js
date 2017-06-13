@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { parse } from 'query-string';
 import { createAction, createAsyncAction } from 'redux-action-tools';
 import propTypes, { routerPropTypes } from './propTypes';
+import listReducer from './reducer';
+import { DEFAULT_CONFIG, DEFAULT_LIST_DATA } from './DEFAULTS';
+import { makePath } from './utils';
 
 function connectListView(config, ListComponent) {
   const finalConfig = {
@@ -27,14 +30,14 @@ function connectListView(config, ListComponent) {
   class ListView extends Component {
     static propTypes = {
       dispatch: PropTypes.func.isRequired,
-      location: routerProps.location.isRequired,
+      location: routerPropTypes.location.isRequired,
       /* eslint-disable react/forbid-prop-types */
       listView: PropTypes.object.isRequired,
-      history: routerProps.history,
+      history: routerPropTypes.history,
     };
     static contextTypes = {
       router: PropTypes.shape({
-        history: routerProps.history
+        history: routerPropTypes.history
       })
     };
     static defaultProps = {
@@ -73,10 +76,7 @@ function connectListView(config, ListComponent) {
         ...parse(search),
         pageIndex,
       };
-      this.history.push({
-        path,
-        query: targetQuery,
-      });
+      this.history.push(makePath(path, targetQuery));
     }
     search = (params)=> {
       const { dispatch, location: { pathname: path, search } } = this.props;
@@ -84,10 +84,7 @@ function connectListView(config, ListComponent) {
         ...finalConfig.mapSearchToQuery(params, parse(search)),
         pageIndex: 1,
       };
-      this.history.push({
-        path,
-        query: targetQuery,
-      });
+      this.history.push(makePath(path, targetQuery));
     }
     sort = (sortData)=> {
       const { dispatch, location: { pathname: path, search } } = this.props;
@@ -96,10 +93,7 @@ function connectListView(config, ListComponent) {
         ...sortData,
         pageIndex: 1,
       };
-      this.history.push({
-        path,
-        query: targetQuery,
-      });
+      this.history.push(makePath(path, targetQuery));
     }
     render() {
       const { listView } = this.props;
@@ -125,6 +119,6 @@ function connectListView(config, ListComponent) {
   return connect(state => state)(ListView);
 }
 
-export { connectListView, DEFAULT_CONFIG, listReducer, propTypes };
+export { connectListView, propTypes, listReducer, DEFAULT_CONFIG };
 
 export default connectListView;

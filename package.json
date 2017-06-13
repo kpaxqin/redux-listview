@@ -2,8 +2,9 @@
   "name": "redux-listview",
   "version": "0.1.0",
   "description": "HOC for create list page with react and redux",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
+    "prepublish": "npm prune && npm run build",
     "build": "webpack"
   },
   "keywords": [
@@ -21,8 +22,8 @@
     "redux-action-tools": "^1.2.2"
   },
   "peerDependencies": {
-    "react": "^15.5.4",
-    "react-redux": "^5.0.5",
+    "react": "^15.0",
+    "react-redux": "^4.0",
     "redux": "^3.6.0"
   },
   "devDependencies": {
