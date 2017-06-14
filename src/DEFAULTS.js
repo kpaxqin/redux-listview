@@ -9,22 +9,29 @@ export const DEFAULT_LIST_DATA = {
   loading: false,
 };
 
-export const DEFAULT_CONFIG = {
+export const DEFAULT_INIT_CONFIG = {
+  getLocationFromProps(props){
+    return props.location;
+  },
+  mountField: 'listView',
+}
+
+export const DEFAULT_LIST_CONFIG = {
   name: uniq(),
   autoLoad: true,
-  mapPropsToRequest(props) {
+  mapLocationToRequest(location) {
     const DEFAULT_REQUEST = {
       pageIndex: 1,
       pageSize: 10,
     };
-    const queryObject = parse(props.location.search);
+    const queryObject = parse(location.search);
     return {
       ...DEFAULT_REQUEST,
       ...queryObject,
     };
   },
-  mapPropsToSearch(props) {
-    return parse(props.location.search);
+  mapLocationToSearch(location) {
+    return parse(location.search);
   },
   mapSearchToQuery(search) {
     const emptyValues = ['', undefined];
